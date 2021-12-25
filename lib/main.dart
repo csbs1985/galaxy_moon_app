@@ -8,8 +8,8 @@ void main() async {
   FirebaseApp defaultApp = await Firebase.initializeApp();
   FirebaseFirestore.instance
       .collection('col')
-      .doc()
-      .set({'message': 'second message'});
+      .doc('6HPiOdOiR2DCKHtgNd0o')
+      .set({'message': 'nada nada nada nada'});
 }
 
 class MyApp extends StatelessWidget {
