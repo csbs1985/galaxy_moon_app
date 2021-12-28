@@ -29,7 +29,6 @@ class _TextComposerState extends State<TextComposer> {
   @override
   void initState() {
     super.initState();
-    imagePicker = new ImagePicker();
   }
 
   @override
