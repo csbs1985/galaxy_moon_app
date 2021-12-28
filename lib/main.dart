@@ -1,37 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:galaxy_moon_app/chat_screen.dart';
 
 void main() async {
   runApp(MyApp());
 
   FirebaseApp defaultApp = await Firebase.initializeApp();
-  FirebaseFirestore.instance
-      .collection('col')
-      .doc('6HPiOdOiR2DCKHtgNd0o')
-      .set({'message': 'nada nada nada nada'});
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: const Color(0xFF0D1117),
+        iconTheme: const IconThemeData(
+          color: Color(0XffC9D1D9),
+        ),
       ),
-      home: Home(),
+      home: ChatScreen(),
     );
   }
-}
-
-Widget Home() {
-  return Scaffold(
-    appBar: AppBar(
-      title: Text('teste'),
-    ),
-  );
 }
