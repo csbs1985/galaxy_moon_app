@@ -1,27 +1,36 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:galaxy_moon_app/chat_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:galaxy_moon_app/screen/splash_screen.dart';
 
 void main() async {
-  runApp(MyApp());
-
-  FirebaseApp defaultApp = await Firebase.initializeApp();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Color(0Xff30363D),
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.light,
+        systemNavigationBarColor: Color(0Xff30363D),
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+    );
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: const Color(0xFF0D1117),
+        scaffoldBackgroundColor: const Color(0Xff30363D),
         iconTheme: const IconThemeData(
           color: Color(0XffC9D1D9),
         ),
       ),
-      home: ChatScreen(),
+      home: const SplashScreen(),
     );
   }
 }

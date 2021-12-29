@@ -2,7 +2,8 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:galaxy_moon_app/text_composer.dart';
+import 'package:galaxy_moon_app/composer/text_composer.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   void _sendMessage({String? text, File? imgFile}) async {
+    await Firebase.initializeApp();
+
     Map<String, dynamic> data = {};
 
     if (imgFile != null) {
@@ -34,7 +37,9 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) async {
+    await Firebase.initializeApp();
+
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
