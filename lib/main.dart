@@ -26,8 +26,16 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0Xff30363D),
+        fontFamily: 'ubuntu',
         iconTheme: const IconThemeData(
           color: Color(0XffC9D1D9),
+        ),
+        textTheme: const TextTheme(
+          bodyText1: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w100,
+            color: Color(0XffC9D1D9),
+          ),
         ),
       ),
       home: const SplashScreen(),
