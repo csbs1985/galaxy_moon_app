@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:galaxy_moon_app/screen/home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:galaxy_moon_app/screen/sing_in_screen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -33,9 +35,15 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 3)).then((_) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeScreen()));
+    bool _currentUser = true;
+
+    Future.delayed(const Duration(seconds: 2)).then((_) {
+      Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.fade,
+            child: _currentUser ? const HomeScreen() : const SingInScreen(),
+          ));
     });
   }
 }

@@ -15,8 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Sign in or Sign up',
-              style: Theme.of(context).textTheme.bodyText1),
+          Text('Home', style: Theme.of(context).textTheme.bodyText1),
         ]);
   }
 }
