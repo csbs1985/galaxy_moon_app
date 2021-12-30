@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, must_be_immutable
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable, unnecessary_null_comparison
 import 'package:flutter/material.dart';
 import 'package:galaxy_moon_app/ui/appColors.dart';
 import 'package:galaxy_moon_app/ui/appTextStyles.dart';
@@ -15,18 +15,21 @@ class AvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return userAvatar.isEmpty
-        ? CircleAvatar(
-            radius: sizeAvatar,
-            backgroundColor: AppColor.secondary,
-            child: Text(
-              userName.substring(0, 1) + userLastName.substring(0, 1),
-              style: AppTextStyles.title,
-            ),
-          )
-        : CircleAvatar(
-            radius: sizeAvatar,
-            backgroundImage: NetworkImage(userAvatar),
-          );
+    return CircleAvatar(
+      radius: sizeAvatar,
+      backgroundColor: AppColor.secondary,
+      backgroundImage: NetworkImage(userAvatar),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, '/profile');
+        },
+        child: userAvatar.isEmpty
+            ? Text(
+                userName.substring(0, 1) + userLastName.substring(0, 1),
+                style: AppTextStyles.text1,
+              )
+            : null,
+      ),
+    );
   }
 }

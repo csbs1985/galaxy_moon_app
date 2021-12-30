@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:galaxy_moon_app/ui/appColors.dart';
@@ -32,8 +31,6 @@ class _OnlineWidgetState extends State<OnlineWidget> {
   Widget build(BuildContext context) {
     switch (_source.keys.toList()[0]) {
       case ConnectivityResult.mobile:
-        _connectionStatus = true;
-        break;
       case ConnectivityResult.wifi:
         _connectionStatus = true;
         break;
@@ -44,7 +41,7 @@ class _OnlineWidgetState extends State<OnlineWidget> {
 
     return Stack(
       children: [
-        AvatarWidget(18),
+        AvatarWidget(16),
         Positioned(
           bottom: 0,
           right: 0,
@@ -86,7 +83,7 @@ class MyConnectivity {
   void _checkStatus(ConnectivityResult result) async {
     bool isOnline = false;
     try {
-      final result = await InternetAddress.lookup('example.com');
+      final result = await InternetAddress.lookup('google.com');
       isOnline = result.isNotEmpty && result[0].rawAddress.isNotEmpty;
     } on SocketException catch (_) {
       isOnline = false;

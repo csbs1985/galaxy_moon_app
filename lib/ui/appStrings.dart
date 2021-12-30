@@ -1,7 +1,7 @@
 class AppString {
   static const String accountApple = 'User apple account';
   static const String accountGoogle = 'User google account';
-  static const String conversations = 'Conversations';
+  static const String conversations = 'Chats';
   static const String newMessages = 'new messages';
   static const String search = 'Search';
   static const String singIn = 'Sign in or Sign up';

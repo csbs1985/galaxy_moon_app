@@ -34,13 +34,13 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    bool _currentUser = true;
+    bool _currentUser = false;
 
     Future.delayed(const Duration(seconds: 2)).then((_) {
       Navigator.push(
           context,
           PageTransition(
-            type: PageTransitionType.fade,
+            type: PageTransitionType.leftToRight,
             child: _currentUser ? const HomeScreen() : const SingInScreen(),
           ));
     });
