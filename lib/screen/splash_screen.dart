@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:galaxy_moon_app/screen/home_screen.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:galaxy_moon_app/screen/sing_in_screen.dart';
+import 'package:galaxy_moon_app/ui/appSvgs.dart';
 import 'package:page_transition/page_transition.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,8 +13,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final String svg = 'assets/icons/moon-logo-macro.svg';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
           SizedBox(
             height: 100,
             width: 100,
-            child: SvgPicture.asset(svg),
+            child: SvgPicture.asset(AppSvg.moon_logo_macro),
           ),
         ],
       ),
