@@ -25,7 +25,7 @@ class AppTextStyles {
     color: AppColor.complementary_3,
   );
   static const TextStyle title = TextStyle(
-    fontSize: 20,
+    fontSize: 28,
     fontWeight: FontWeight.w100,
     color: AppColor.element,
   );
