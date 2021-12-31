@@ -1,6 +1,9 @@
 // ignore_for_file: unnecessary_null_comparison, override_on_non_overriding_member, avoid_print, unused_element
 
+import 'dart:io';
+import 'package:galaxy_moon_app/service/globals.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:galaxy_moon_app/ui/appColors.dart';
@@ -8,8 +11,8 @@ import 'package:galaxy_moon_app/ui/appStrings.dart';
 import 'package:galaxy_moon_app/ui/appSvgs.dart';
 import 'package:galaxy_moon_app/ui/appTextStyles.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-late User currentUser;
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:http/http.dart' as http;
 
 class SingInScreen extends StatefulWidget {
   const SingInScreen({Key? key}) : super(key: key);
@@ -34,29 +37,65 @@ class _SingInScreenState extends State<SingInScreen> {
   }
 
   Future<User?> _getUserGoogle() async {
-    final currentUser = FirebaseAuth.instance.currentUser;
-    if (currentUser != null) return currentUser;
+    // if (currentUser != null) return currentUser;
 
-    try {
-      final GoogleSignInAccount? googleSignInAccount =
-          await googleSignIn.signIn();
-      final GoogleSignInAuthentication? googleSignInAuthentication =
-          await googleSignInAccount?.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        idToken: googleSignInAuthentication?.idToken,
-        accessToken: googleSignInAuthentication?.accessToken,
-      );
-      final UserCredential authResult =
-          await FirebaseAuth.instance.signInWithCredential(credential);
-      final User? user = authResult.user;
-      print('userrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-      return user;
-    } catch (e) {
-      return null;
-    }
+    // try {
+    //   final GoogleSignInAccount? googleSignInAccount =
+    //       await googleSignIn.signIn();
+    //   final GoogleSignInAuthentication? googleSignInAuthentication =
+    //       await googleSignInAccount?.authentication;
+    //   final AuthCredential credential = GoogleAuthProvider.credential(
+    //     idToken: googleSignInAuthentication?.idToken,
+    //     accessToken: googleSignInAuthentication?.accessToken,
+    //   );
+    //   final UserCredential authResult =
+    //       await FirebaseAuth.instance.signInWithCredential(credential);
+    //   final User? user = authResult.user;
+    //   print('userrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+    //   return user;
+    // } catch (e) {
+    //   return null;
+    // }
   }
 
-  void _getUserApple() {}
+  Future<User?> _getUserApple() async {
+    final credential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      webAuthenticationOptions: WebAuthenticationOptions(
+        clientId: 'de.lunaone.flutter.signinwithappleexample.service',
+        redirectUri: Uri.parse(
+          'https://flutter-sign-in-with-apple-example.glitch.me/callbacks/sign_in_with_apple',
+        ),
+      ),
+      nonce: 'example-nonce',
+      state: 'example-state',
+    );
+
+    print(credential);
+
+    final signInWithAppleEndpoint = Uri(
+      scheme: 'https',
+      host: 'flutter-sign-in-with-apple-example.glitch.me',
+      path: '/sign_in_with_apple',
+      queryParameters: <String, String>{
+        'code': credential.authorizationCode,
+        if (credential.givenName != null) 'firstName': credential.givenName!,
+        if (credential.familyName != null) 'lastName': credential.familyName!,
+        'useBundleId':
+            !kIsWeb && (Platform.isIOS || Platform.isMacOS) ? 'true' : 'false',
+        if (credential.state != null) 'state': credential.state!,
+      },
+    );
+
+    final session = await http.Client().post(
+      signInWithAppleEndpoint,
+    );
+
+    print(session);
+  }
 
   @override
   Widget build(BuildContext context) {
