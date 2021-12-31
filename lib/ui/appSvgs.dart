@@ -6,4 +6,5 @@ class AppSvg {
   static const String close = 'assets/icons/close.svg';
   static const String moon_logo_macro = 'assets/icons/moon-logo-macro.svg';
   static const String search = 'assets/icons/search.svg';
+  static const String options = 'assets/icons/options.svg';
 }

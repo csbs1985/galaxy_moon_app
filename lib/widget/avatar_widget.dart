@@ -4,9 +4,10 @@ import 'package:galaxy_moon_app/ui/appColors.dart';
 import 'package:galaxy_moon_app/ui/appTextStyles.dart';
 
 class AvatarWidget extends StatelessWidget {
-  AvatarWidget(this.sizeAvatar);
+  AvatarWidget(this.sizeAvatar, this.router);
 
   final double sizeAvatar;
+  final bool router;
 
   String userName = 'Charles';
   String userLastName = 'Santos';
@@ -21,7 +22,7 @@ class AvatarWidget extends StatelessWidget {
       backgroundImage: NetworkImage(userAvatar),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, '/profile');
+          router ? Navigator.pushNamed(context, '/profile') : null;
         },
         child: userAvatar.isEmpty
             ? Text(
