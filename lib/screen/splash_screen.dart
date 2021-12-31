@@ -1,3 +1,7 @@
+// ignore_for_file: unnecessary_null_comparison
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:galaxy_moon_app/screen/home_screen.dart';
@@ -34,14 +38,15 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    bool _currentUser = false;
+    final currentUser = FirebaseAuth.instance.currentUser;
 
     Future.delayed(const Duration(seconds: 2)).then((_) {
       Navigator.push(
           context,
           PageTransition(
-            type: PageTransitionType.leftToRight,
-            child: _currentUser ? const HomeScreen() : const SingInScreen(),
+            type: PageTransitionType.fade,
+            child:
+                currentUser != null ? const HomeScreen() : const SingInScreen(),
           ));
     });
   }

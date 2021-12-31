@@ -1,9 +1,15 @@
+// ignore_for_file: unnecessary_null_comparison, override_on_non_overriding_member, avoid_print, unused_element
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:galaxy_moon_app/ui/appColors.dart';
 import 'package:galaxy_moon_app/ui/appStrings.dart';
 import 'package:galaxy_moon_app/ui/appSvgs.dart';
 import 'package:galaxy_moon_app/ui/appTextStyles.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+late User currentUser;
 
 class SingInScreen extends StatefulWidget {
   const SingInScreen({Key? key}) : super(key: key);
@@ -13,6 +19,45 @@ class SingInScreen extends StatefulWidget {
 }
 
 class _SingInScreenState extends State<SingInScreen> {
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+
+  @override
+  void initSate() async {
+    super.initState();
+    _getUserGoogle().whenComplete(() {
+      setState(() {});
+    });
+
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      currentUser = user!;
+    });
+  }
+
+  Future<User?> _getUserGoogle() async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) return currentUser;
+
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+      final GoogleSignInAuthentication? googleSignInAuthentication =
+          await googleSignInAccount?.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication?.idToken,
+        accessToken: googleSignInAuthentication?.accessToken,
+      );
+      final UserCredential authResult =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      final User? user = authResult.user;
+      print('userrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+      return user;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  void _getUserApple() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +73,7 @@ class _SingInScreenState extends State<SingInScreen> {
               width: 100,
               child: SvgPicture.asset(AppSvg.moon_logo_macro),
             ),
-            const SizedBox(height: 77),
+            const SizedBox(height: 117),
             const Text(
               AppString.singIn,
               style: AppTextStyles.h1,
@@ -46,7 +91,7 @@ class _SingInScreenState extends State<SingInScreen> {
                   AppString.accountGoogle,
                   style: AppTextStyles.button,
                 ),
-                onPressed: () {},
+                onPressed: _getUserGoogle,
               ),
             ),
             const SizedBox(height: 20),
@@ -61,7 +106,7 @@ class _SingInScreenState extends State<SingInScreen> {
                   AppString.accountApple,
                   style: AppTextStyles.button,
                 ),
-                onPressed: () {},
+                onPressed: _getUserApple,
               ),
             ),
             const SizedBox(height: 20),
