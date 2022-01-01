@@ -24,48 +24,42 @@ class _HomeScreenState extends State<HomeScreen> {
     new Message(
         messageId: "001",
         messageFrom: "Charlene",
-        messageText:
-            "Boa tarde Que horas você vai para a tia? Pode passar aqui para me pegar? Se parar de chover vou a pé",
+        messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
         messageRead: false),
     new Message(
         messageId: "002",
         messageFrom: "Charlene",
-        messageText:
-            "Boa tarde Que horas você vai para a tia? Pode passar aqui para me pegar? Se parar de chover vou a pé",
+        messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
         messageRead: false),
     new Message(
         messageId: "003",
         messageFrom: "Charlene",
-        messageText:
-            "Boa tarde Que horas você vai para a tia? Pode passar aqui para me pegar? Se parar de chover vou a pé",
+        messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
         messageRead: true),
     new Message(
         messageId: "004",
         messageFrom: "Luiza",
-        messageText:
-            "Boa tarde Que horas você vai para a tia? Pode passar aqui para me pegar? Se parar de chover vou a pé",
+        messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
         messageRead: false),
     new Message(
         messageId: "005",
         messageFrom: "Sabrina",
-        messageText:
-            "Boa tarde Que horas você vai para a tia? Pode passar aqui para me pegar? Se parar de chover vou a pé",
+        messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
         messageRead: false),
     new Message(
         messageId: "006",
         messageFrom: "Charlene",
-        messageText:
-            "Boa tarde Que horas você vai para a tia? Pode passar aqui para me pegar? Se parar de chover vou a pé",
+        messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
         messageRead: true)
@@ -89,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _getMessages() {
     setState(() {
-      _messages = AllMessages;
+      _messages = AllMessages.where((i) => !i.messageRead).toList();
     });
   }
 

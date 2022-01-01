@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 2)).then((_) {
+    Future.delayed(const Duration(seconds: 1)).then((_) {
       Navigator.push(
           context,
           PageTransition(

@@ -22,7 +22,7 @@ class ListUserWidget extends StatelessWidget {
           for (var message in messages)
             SizedBox(
               child: Container(
-                margin: const EdgeInsets.only(bottom: 20),
+                margin: const EdgeInsets.only(bottom: 10),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
