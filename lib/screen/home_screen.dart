@@ -19,6 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
   late final _newMessages;
   late final _messages;
   late String _numNewMessage;
+  late double _sizeNewMessages;
+  late double _sizeMessages;
+  final double _sizeMessage = 64;
+  final double _sizeTitle = 56;
 
   List<Message> AllMessages = [
     new Message(
@@ -41,7 +45,91 @@ class _HomeScreenState extends State<HomeScreen> {
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
+    new Message(
+        messageId: "004",
+        messageFrom: "Luiza",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
+    new Message(
+        messageId: "005",
+        messageFrom: "Sabrina",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
+    new Message(
+        messageId: "006",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
         messageRead: true),
+    new Message(
+        messageId: "001",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
+    new Message(
+        messageId: "002",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
+    new Message(
+        messageId: "003",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
+    new Message(
+        messageId: "004",
+        messageFrom: "Luiza",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
+    new Message(
+        messageId: "005",
+        messageFrom: "Sabrina",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
+    new Message(
+        messageId: "006",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: true),
+    new Message(
+        messageId: "001",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
+    new Message(
+        messageId: "002",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
+    new Message(
+        messageId: "003",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageRead: false),
     new Message(
         messageId: "004",
         messageFrom: "Luiza",
@@ -78,12 +166,15 @@ class _HomeScreenState extends State<HomeScreen> {
       _newMessages = AllMessages.where((i) => i.messageRead).toList();
       _numNewMessage =
           _newMessages.length.toString() + ' ' + AppString.newMessages;
+      _sizeNewMessages =
+          _sizeMessage * (_newMessages.length).toDouble() + _sizeTitle;
     });
   }
 
   void _getMessages() {
     setState(() {
       _messages = AllMessages.where((i) => !i.messageRead).toList();
+      _sizeMessages = _sizeMessage * (_messages.length).toDouble() + _sizeTitle;
     });
   }
 
@@ -92,24 +183,22 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 64, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 48, 10, 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const OnlineWidget(),
               const TitleWidget(AppString.search),
               const SearchButtonWidget(),
-              TitleWidget(_numNewMessage),
               SizedBox(
                 width: double.infinity,
-                height: 64,
-                child: ListUserWidget(_newMessages),
+                height: _sizeNewMessages,
+                child: ListUserWidget(_numNewMessage, _newMessages),
               ),
-              const TitleWidget(AppString.conversations),
               SizedBox(
                 width: double.infinity,
-                height: 64,
-                child: ListUserWidget(_messages),
+                height: _sizeMessages,
+                child: ListUserWidget(AppString.conversations, _messages),
               ),
             ],
           ),
