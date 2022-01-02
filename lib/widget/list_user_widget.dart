@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:galaxy_moon_app/modeles/message_model.dart';
-import 'package:galaxy_moon_app/screen/chat_screen.dart';
 import 'package:galaxy_moon_app/ui/appTextStyles.dart';
 import 'package:galaxy_moon_app/widget/avatar_widget.dart';
 import 'package:galaxy_moon_app/widget/title_widget.dart';
 import 'package:page_transition/page_transition.dart';
 
 class ListUserWidget extends StatelessWidget {
+  static const routeName = '/passArguments';
   const ListUserWidget(this.titleList, this.messages);
 
   final String titleList;
@@ -23,43 +23,31 @@ class ListUserWidget extends StatelessWidget {
         children: [
           TitleWidget(titleList),
           for (var message in messages)
-            SizedBox(
-              height: 64,
-              child: GestureDetector(
-                onLongPress: () {},
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.topToBottom,
-                        child: const ChatScreen(),
-                      ));
-                },
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: AvatarWidget(24, false),
+            TextButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, '/chat',
+                    arguments: message.messageFrom);
+              },
+              onLongPress: () {},
+              icon: AvatarWidget(24, false),
+              label: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          message.messageFrom,
+                          style: AppTextStyles.h1,
+                        ),
+                        Text(
+                          message.messageText,
+                          style: AppTextStyles.text1,
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            message.messageFrom,
-                            style: AppTextStyles.h1,
-                          ),
-                          Text(
-                            message.messageText,
-                            style: AppTextStyles.text1,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
         ],

@@ -1,8 +1,12 @@
 // ignore_for_file: non_constant_identifier_names, unnecessary_new, prefer_typing_uninitialized_variables
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:galaxy_moon_app/modeles/message_model.dart';
 import 'package:galaxy_moon_app/ui/appStrings.dart';
+import 'package:galaxy_moon_app/ui/appSvgs.dart';
 import 'package:galaxy_moon_app/widget/list_user_widget.dart';
 import 'package:galaxy_moon_app/widget/online_widget.dart';
 import 'package:galaxy_moon_app/widget/search_button_widget.dart';
@@ -27,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Message> AllMessages = [
     new Message(
         messageId: "001",
-        messageFrom: "Charlene",
+        messageFrom: "Tereza",
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
@@ -163,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _getNewMessages() {
     setState(() {
-      _newMessages = AllMessages.where((i) => i.messageRead).toList();
+      _newMessages = AllMessages.where((i) => !i.messageRead).toList();
       _numNewMessage =
           _newMessages.length.toString() + ' ' + AppString.newMessages;
       _sizeNewMessages =
@@ -173,34 +177,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _getMessages() {
     setState(() {
-      _messages = AllMessages.where((i) => !i.messageRead).toList();
+      _messages = AllMessages.where((i) => i.messageRead).toList();
       _sizeMessages = _sizeMessage * (_messages.length).toDouble() + _sizeTitle;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 48, 10, 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const OnlineWidget(),
-              const TitleWidget(AppString.search),
-              const SearchButtonWidget(),
-              SizedBox(
-                width: double.infinity,
-                height: _sizeNewMessages,
-                child: ListUserWidget(_numNewMessage, _newMessages),
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: _sizeMessages,
-                child: ListUserWidget(AppString.conversations, _messages),
-              ),
-            ],
+    return WillPopScope(
+      onWillPop: () => exit(0),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 48, 10, 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const OnlineWidget(),
+                const TitleWidget(AppString.search),
+                const SearchButtonWidget(),
+                SizedBox(
+                  width: double.infinity,
+                  height: _sizeNewMessages,
+                  child: ListUserWidget(_numNewMessage, _newMessages),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  height: _sizeMessages,
+                  child: ListUserWidget(AppString.conversations, _messages),
+                ),
+              ],
+            ),
           ),
         ),
       ),

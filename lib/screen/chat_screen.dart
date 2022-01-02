@@ -1,9 +1,9 @@
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:galaxy_moon_app/composer/text_composer.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:galaxy_moon_app/ui/appColors.dart';
+import 'package:galaxy_moon_app/ui/appSvgs.dart';
+import 'package:galaxy_moon_app/ui/appTextStyles.dart';
+import 'package:galaxy_moon_app/widget/avatar_widget.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -13,72 +13,34 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  void _sendMessage({String? text, File? imgFile}) async {
-    await Firebase.initializeApp();
-
-    Map<String, dynamic> data = {};
-
-    if (imgFile != null) {
-      UploadTask task = FirebaseStorage.instance
-          .ref()
-          .child(DateTime.now().microsecondsSinceEpoch.toString())
-          .putFile(imgFile);
-
-      TaskSnapshot taskSnapshot = await task.whenComplete(() => null);
-      String url = await taskSnapshot.ref.getDownloadURL();
-      data['imgUrl'] = url;
-    }
-
-    if (text != null) {
-      data['text'] = text;
-    }
-
-    FirebaseFirestore.instance.collection('messages').doc().set(data);
-  }
-
   @override
-  build(BuildContext context) async {
-    await Firebase.initializeApp();
+  Widget build(BuildContext context) {
+    Object? data = ModalRoute.of(context)?.settings.arguments;
+    String messageFrom = data.toString();
+
+    var scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text("Nome do usuário"),
-          elevation: 0,
+      key: scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: AppColor.primary,
+        elevation: 0,
+        leading: IconButton(
+          icon: SvgPicture.asset(AppSvg.close),
+          onPressed: () => Navigator.of(context).pop(),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('messages')
-                      .snapshots(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                      case ConnectionState.waiting:
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      default:
-                        return _listSuccess(snapshot);
-                    }
-                  }),
-            ),
-            TextComposer(_sendMessage),
-          ],
-        ));
-  }
-
-  Widget _listSuccess(AsyncSnapshot<QuerySnapshot> snapshot) {
-    return ListView(
-      children: snapshot.data!.docs.reversed.map((DocumentSnapshot document) {
-        Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-        return ListTile(
-          title: Text(data['text']),
-        );
-      }).toList(),
+        title: Text(
+          messageFrom,
+          style: AppTextStyles.title,
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: AvatarWidget(24, true),
+            onPressed: () {},
+          ),
+        ],
+      ),
     );
   }
 }

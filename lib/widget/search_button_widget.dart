@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:galaxy_moon_app/screen/search_screen.dart';
 import 'package:galaxy_moon_app/ui/appColors.dart';
 import 'package:galaxy_moon_app/ui/appStrings.dart';
 import 'package:galaxy_moon_app/ui/appSvgs.dart';
 import 'package:galaxy_moon_app/ui/appTextStyles.dart';
-import 'package:page_transition/page_transition.dart';
 
 class SearchButtonWidget extends StatelessWidget {
   const SearchButtonWidget({Key? key}) : super(key: key);
@@ -17,12 +15,10 @@ class SearchButtonWidget extends StatelessWidget {
       width: double.infinity,
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.topToBottom,
-                child: const SearchScreen(),
-              ));
+          Navigator.pushNamed(
+            context,
+            '/search',
+          );
         },
         child: Container(
           padding: const EdgeInsets.all(10),

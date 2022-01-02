@@ -9,6 +9,7 @@ import 'package:galaxy_moon_app/screen/search_screen.dart';
 import 'package:galaxy_moon_app/screen/splash_screen.dart';
 import 'package:galaxy_moon_app/ui/appColors.dart';
 import 'package:galaxy_moon_app/ui/appStrings.dart';
+import 'package:page_transition/page_transition.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -34,12 +35,30 @@ class MyApp extends StatelessWidget with AppColor, AppString {
       title: AppString.title,
       initialRoute: '/',
       routes: {
-        '/': (context) => const SplashScreen(),
-        '/splash': (context) => const SplashScreen(),
-        '/home': (context) => const HomeScreen(),
-        '/profile': (context) => const ProfileScreen(),
-        '/chat': (context) => const ChatScreen(),
-        '/search': (context) => const SearchScreen(),
+        '/': (context) => SplashScreen(),
+        '/splash': (context) => SplashScreen(),
+        '/home': (context) => HomeScreen(),
+      },
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/chat':
+            return PageTransition(
+                child: ChatScreen(),
+                type: PageTransitionType.rightToLeft,
+                settings: settings);
+          case '/search':
+            return PageTransition(
+                child: SearchScreen(),
+                type: PageTransitionType.topToBottom,
+                settings: settings);
+          case '/profile':
+            return PageTransition(
+                child: ProfileScreen(),
+                type: PageTransitionType.topToBottom,
+                settings: settings);
+          default:
+            return null;
+        }
       },
       theme: ThemeData(
         scaffoldBackgroundColor: AppColor.primary,
