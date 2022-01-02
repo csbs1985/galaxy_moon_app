@@ -10,6 +10,7 @@ class AppColor {
   static const Color complementary_1 = const Color(0xFF6EDA2C);
   static const Color complementary_2 = const Color(0xFFFF0000);
   static const Color complementary_3 = const Color(0xFF1474FF);
+  static const Color complementary_4 = const Color(0xFF8b949e);
 
   static const Color success = const Color(0xFF28A745);
   static const Color info = const Color(0xFF17A2b8);

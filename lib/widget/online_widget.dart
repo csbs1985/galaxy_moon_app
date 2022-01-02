@@ -41,7 +41,7 @@ class _OnlineWidgetState extends State<OnlineWidget> {
 
     return Stack(
       children: [
-        AvatarWidget(16, true),
+        AvatarWidget(16),
         Positioned(
           bottom: 0,
           right: 0,

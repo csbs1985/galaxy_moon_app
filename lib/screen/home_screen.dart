@@ -3,10 +3,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:galaxy_moon_app/modeles/message_model.dart';
+import 'package:galaxy_moon_app/models/message_model.dart';
 import 'package:galaxy_moon_app/ui/appStrings.dart';
-import 'package:galaxy_moon_app/ui/appSvgs.dart';
 import 'package:galaxy_moon_app/widget/list_user_widget.dart';
 import 'package:galaxy_moon_app/widget/online_widget.dart';
 import 'package:galaxy_moon_app/widget/search_button_widget.dart';
@@ -25,51 +23,64 @@ class _HomeScreenState extends State<HomeScreen> {
   late String _numNewMessage;
   late double _sizeNewMessages;
   late double _sizeMessages;
-  final double _sizeMessage = 64;
+  final double _sizeMessage = 60;
   final double _sizeTitle = 56;
+  final String user = 'charles';
 
-  List<Message> AllMessages = [
+  List<Message> allMessages = [
     new Message(
         messageId: "001",
         messageFrom: "Tereza",
-        messageText: "entregue",
+        messageText: "Não demora, o povo chegou",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "002",
         messageFrom: "Charlene",
-        messageText: "entregue",
+        messageText: "Chegando ai",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
         messageRead: false),
     new Message(
         messageId: "003",
-        messageFrom: "Charlene",
-        messageText: "entregue",
-        messageTo: "Charles",
+        messageFrom: "Charles",
+        messageText: "Estamos",
+        messageTo: "Charlene",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "004",
         messageFrom: "Luiza",
-        messageText: "entregue",
+        messageText: "Vou arrumar as coisas para levar",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "005",
         messageFrom: "Sabrina",
-        messageText: "entregue",
+        messageText: "Blz",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "006",
-        messageFrom: "Charlene",
-        messageText: "entregue",
-        messageTo: "Charles",
+        messageFrom: "Charles",
+        messageText: "Assim que a mãe terminar de se arrumar.",
+        messageTo: "Charlene",
         messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
         messageRead: true),
     new Message(
         messageId: "001",
@@ -77,6 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: true,
         messageRead: false),
     new Message(
         messageId: "002",
@@ -84,20 +97,26 @@ class _HomeScreenState extends State<HomeScreen> {
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "003",
         messageFrom: "Charlene",
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "004",
         messageFrom: "Luiza",
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
         messageRead: false),
     new Message(
         messageId: "005",
@@ -105,6 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
         messageRead: false),
     new Message(
         messageId: "006",
@@ -112,6 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
         messageRead: true),
     new Message(
         messageId: "001",
@@ -119,41 +142,107 @@ class _HomeScreenState extends State<HomeScreen> {
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "002",
         messageFrom: "Charlene",
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "003",
         messageFrom: "Charlene",
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "004",
         messageFrom: "Luiza",
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "005",
         messageFrom: "Sabrina",
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
-        messageRead: false),
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
     new Message(
         messageId: "006",
         messageFrom: "Charlene",
         messageText: "entregue",
         messageTo: "Charles",
         messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
+    new Message(
+        messageId: "001",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
+    new Message(
+        messageId: "002",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
+    new Message(
+        messageId: "003",
+        messageFrom: "Charlene",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
+    new Message(
+        messageId: "004",
+        messageFrom: "Luiza",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
+    new Message(
+        messageId: "005",
+        messageFrom: "Sabrina",
+        messageText: "entregue",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
+        messageRead: true),
+    new Message(
+        messageId: "006",
+        messageFrom: "Charlene",
+        messageText: "Fim",
+        messageTo: "Charles",
+        messageDate: "30/09/2021 15:54:30",
+        messageEdit: false,
+        messageDelete: false,
         messageRead: true)
   ];
 
@@ -167,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _getNewMessages() {
     setState(() {
-      _newMessages = AllMessages.where((i) => !i.messageRead).toList();
+      _newMessages = allMessages.where((i) => !i.messageRead).toList();
       _numNewMessage =
           _newMessages.length.toString() + ' ' + AppString.newMessages;
       _sizeNewMessages =
@@ -177,7 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _getMessages() {
     setState(() {
-      _messages = AllMessages.where((i) => i.messageRead).toList();
+      _messages = allMessages.where((i) => i.messageRead).toList();
       _sizeMessages = _sizeMessage * (_messages.length).toDouble() + _sizeTitle;
     });
   }
@@ -199,12 +288,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   width: double.infinity,
                   height: _sizeNewMessages,
-                  child: ListUserWidget(_numNewMessage, _newMessages),
+                  child:
+                      ListUserWidget(_numNewMessage, _newMessages, allMessages),
                 ),
                 SizedBox(
                   width: double.infinity,
                   height: _sizeMessages,
-                  child: ListUserWidget(AppString.conversations, _messages),
+                  child: ListUserWidget(
+                      AppString.conversations, _messages, allMessages),
                 ),
               ],
             ),

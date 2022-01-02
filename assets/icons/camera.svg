@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="17" viewBox="0 0 21 17">
+    <g id="camera" transform="translate(0.5 0.5)">
+        <path id="Caminho_1" data-name="Caminho 1" d="M17,9.333,15.627,8H8.373L7,9.333H2V24H22V9.333Z"
+            transform="translate(-2 -8)" fill="none" stroke="#c9d1d9" stroke-miterlimit="10" stroke-width="1" />
+        <circle id="Elipse_1" data-name="Elipse 1" cx="4.667" cy="4.667" r="4.667" transform="translate(5.333 4)"
+            fill="none" stroke="#c9d1d9" stroke-miterlimit="10" stroke-width="1" />
+    </g>
+</svg>

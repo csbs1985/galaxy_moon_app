@@ -14,6 +14,11 @@ class AppTextStyles {
     fontWeight: FontWeight.w100,
     color: AppColor.element,
   );
+  static const TextStyle text2 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w100,
+    color: AppColor.complementary_4,
+  );
   static const TextStyle button = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w100,
@@ -28,5 +33,11 @@ class AppTextStyles {
     fontSize: 28,
     fontWeight: FontWeight.w100,
     color: AppColor.element,
+  );
+  static const TextStyle delete = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w100,
+    fontStyle: FontStyle.italic,
+    color: AppColor.complementary_4,
   );
 }
