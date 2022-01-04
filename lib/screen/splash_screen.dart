@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:galaxy_moon_app/screen/home_screen.dart';
-import 'package:galaxy_moon_app/screen/sing_in_screen.dart';
-import 'package:galaxy_moon_app/service/globals.dart';
-import 'package:galaxy_moon_app/ui/appSvgs.dart';
+import 'package:universe_moon_app/screen/home_screen.dart';
+import 'package:universe_moon_app/screen/sing_in_screen.dart';
+import 'package:universe_moon_app/service/globals.dart';
+import 'package:universe_moon_app/ui/appSvgs.dart';
 import 'package:page_transition/page_transition.dart';
 
 class SplashScreen extends StatefulWidget {

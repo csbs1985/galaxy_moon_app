@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/cupertino.dart';
-import 'package:galaxy_moon_app/ui/appColors.dart';
+import 'package:universe_moon_app/ui/appColors.dart';
 
 class AppTextStyles {
   static const TextStyle h1 = TextStyle(
@@ -39,5 +39,10 @@ class AppTextStyles {
     fontWeight: FontWeight.w100,
     fontStyle: FontStyle.italic,
     color: AppColor.complementary_4,
+  );
+  static const TextStyle h2 = TextStyle(
+    fontSize: 40,
+    fontWeight: FontWeight.w100,
+    color: AppColor.element,
   );
 }

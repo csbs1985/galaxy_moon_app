@@ -1,8 +1,8 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, unnecessary_string_interpolations
 
 import 'package:flutter/material.dart';
-import 'package:galaxy_moon_app/models/message_model.dart';
-import 'package:galaxy_moon_app/ui/appTextStyles.dart';
+import 'package:universe_moon_app/models/message_model.dart';
+import 'package:universe_moon_app/ui/appTextStyles.dart';
 
 class MessageWidget extends StatefulWidget {
   final List<Message> allMessages;
@@ -59,7 +59,7 @@ class _MessageWidgetState extends State<MessageWidget> {
           );
         },
         separatorBuilder: (BuildContext context, int index) => const SizedBox(
-          height: 10,
+          height: 20,
         ),
       ),
     );

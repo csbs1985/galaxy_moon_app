@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:galaxy_moon_app/ui/appSvgs.dart';
+import 'package:universe_moon_app/ui/appSvgs.dart';
 
 class InputMessageWidget extends StatefulWidget {
   const InputMessageWidget({Key? key}) : super(key: key);

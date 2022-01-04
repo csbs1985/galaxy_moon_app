@@ -3,13 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:galaxy_moon_app/models/message_model.dart';
-import 'package:galaxy_moon_app/ui/appColors.dart';
-import 'package:galaxy_moon_app/ui/appSvgs.dart';
-import 'package:galaxy_moon_app/ui/appTextStyles.dart';
-import 'package:galaxy_moon_app/widget/avatar_widget.dart';
-import 'package:galaxy_moon_app/widget/input_message_widget.dart';
-import 'package:galaxy_moon_app/widget/message_widget.dart';
+import 'package:universe_moon_app/models/message_model.dart';
+import 'package:universe_moon_app/ui/appColors.dart';
+import 'package:universe_moon_app/ui/appSvgs.dart';
+import 'package:universe_moon_app/ui/appTextStyles.dart';
+import 'package:universe_moon_app/widget/avatar_widget.dart';
+import 'package:universe_moon_app/widget/input_message_widget.dart';
+import 'package:universe_moon_app/widget/message_widget.dart';
+import 'package:universe_moon_app/widget/not_message_widget.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -30,6 +31,8 @@ class _ChatScreenState extends State<ChatScreen> {
             .toString();
     List<Message> allMessages =
         (ModalRoute.of(context)!.settings.arguments as Map)['allMessages'];
+
+    // allMessages = [];
 
     var scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -60,7 +63,9 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-              child: MessageWidget(allMessages),
+              child: allMessages.isEmpty
+                  ? NotMessageWidget(messageFrom)
+                  : MessageWidget(allMessages),
             ),
           ),
           const InputMessageWidget(),

@@ -1,15 +1,15 @@
 // ignore_for_file: unnecessary_null_comparison, override_on_non_overriding_member, avoid_print, unused_element
 
 import 'dart:io';
-import 'package:galaxy_moon_app/service/globals.dart';
+import 'package:universe_moon_app/service/globals.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:galaxy_moon_app/ui/appColors.dart';
-import 'package:galaxy_moon_app/ui/appStrings.dart';
-import 'package:galaxy_moon_app/ui/appSvgs.dart';
-import 'package:galaxy_moon_app/ui/appTextStyles.dart';
+import 'package:universe_moon_app/ui/appColors.dart';
+import 'package:universe_moon_app/ui/appStrings.dart';
+import 'package:universe_moon_app/ui/appSvgs.dart';
+import 'package:universe_moon_app/ui/appTextStyles.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:http/http.dart' as http;

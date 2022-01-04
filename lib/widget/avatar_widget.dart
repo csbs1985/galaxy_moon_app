@@ -1,8 +1,8 @@
 // ignore_for_file: use_key_in_widget_constructors, must_be_immutable, unnecessary_null_comparison
 
 import 'package:flutter/material.dart';
-import 'package:galaxy_moon_app/ui/appColors.dart';
-import 'package:galaxy_moon_app/ui/appTextStyles.dart';
+import 'package:universe_moon_app/ui/appColors.dart';
+import 'package:universe_moon_app/ui/appTextStyles.dart';
 
 class AvatarWidget extends StatelessWidget {
   AvatarWidget(this.sizeAvatar);

@@ -1,10 +1,10 @@
 // ignore_for_file: use_key_in_widget_constructors, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:galaxy_moon_app/models/message_model.dart';
-import 'package:galaxy_moon_app/ui/appTextStyles.dart';
-import 'package:galaxy_moon_app/widget/avatar_widget.dart';
-import 'package:galaxy_moon_app/widget/title_widget.dart';
+import 'package:universe_moon_app/models/message_model.dart';
+import 'package:universe_moon_app/ui/appTextStyles.dart';
+import 'package:universe_moon_app/widget/avatar_widget.dart';
+import 'package:universe_moon_app/widget/title_widget.dart';
 
 class ListUserWidget extends StatelessWidget {
   static const routeName = '/passArguments';

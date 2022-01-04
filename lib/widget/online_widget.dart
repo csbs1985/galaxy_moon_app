@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:galaxy_moon_app/ui/appColors.dart';
-import 'package:galaxy_moon_app/widget/avatar_widget.dart';
+import 'package:universe_moon_app/ui/appColors.dart';
+import 'package:universe_moon_app/widget/avatar_widget.dart';
 
 class OnlineWidget extends StatefulWidget {
   const OnlineWidget({Key? key}) : super(key: key);

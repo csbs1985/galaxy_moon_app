@@ -3,12 +3,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:galaxy_moon_app/models/message_model.dart';
-import 'package:galaxy_moon_app/ui/appStrings.dart';
-import 'package:galaxy_moon_app/widget/list_user_widget.dart';
-import 'package:galaxy_moon_app/widget/online_widget.dart';
-import 'package:galaxy_moon_app/widget/search_button_widget.dart';
-import 'package:galaxy_moon_app/widget/title_widget.dart';
+import 'package:universe_moon_app/models/message_model.dart';
+import 'package:universe_moon_app/ui/appStrings.dart';
+import 'package:universe_moon_app/widget/list_user_widget.dart';
+import 'package:universe_moon_app/widget/not_all_messages_widget.dart';
+import 'package:universe_moon_app/widget/online_widget.dart';
+import 'package:universe_moon_app/widget/search_button_widget.dart';
+import 'package:universe_moon_app/widget/title_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -250,6 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
 
+    allMessages = [];
     _getNewMessages();
     _getMessages();
   }
@@ -285,18 +287,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 const OnlineWidget(),
                 const TitleWidget(AppString.search),
                 const SearchButtonWidget(),
-                SizedBox(
-                  width: double.infinity,
-                  height: _sizeNewMessages,
-                  child:
-                      ListUserWidget(_numNewMessage, _newMessages, allMessages),
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  height: _sizeMessages,
-                  child: ListUserWidget(
-                      AppString.conversations, _messages, allMessages),
-                ),
+                if (allMessages.isEmpty)
+                  SizedBox(
+                    width: double.infinity,
+                    height: 200,
+                    child: NotAllMessagesWidget(),
+                  ),
+                if (_newMessages.isNotEmpty)
+                  SizedBox(
+                    width: double.infinity,
+                    height: _sizeNewMessages,
+                    child: ListUserWidget(
+                        _numNewMessage, _newMessages, allMessages),
+                  ),
+                if (_messages.isNotEmpty)
+                  SizedBox(
+                    width: double.infinity,
+                    height: _sizeMessages,
+                    child: ListUserWidget(
+                        AppString.conversations, _messages, allMessages),
+                  ),
               ],
             ),
           ),

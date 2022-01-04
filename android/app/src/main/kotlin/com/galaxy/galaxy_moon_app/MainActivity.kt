@@ -1,4 +1,4 @@
-package com.galaxy.galaxy_moon_app
+package com.universe.universe_moon_app
 
 import io.flutter.embedding.android.FlutterActivity
 

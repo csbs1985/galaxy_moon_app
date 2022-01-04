@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:galaxy_moon_app/ui/appColors.dart';
-import 'package:galaxy_moon_app/ui/appStrings.dart';
-import 'package:galaxy_moon_app/ui/appSvgs.dart';
-import 'package:galaxy_moon_app/ui/appTextStyles.dart';
+import 'package:universe_moon_app/ui/appColors.dart';
+import 'package:universe_moon_app/ui/appStrings.dart';
+import 'package:universe_moon_app/ui/appSvgs.dart';
+import 'package:universe_moon_app/ui/appTextStyles.dart';
 
 class SearchButtonWidget extends StatelessWidget {
   const SearchButtonWidget({Key? key}) : super(key: key);

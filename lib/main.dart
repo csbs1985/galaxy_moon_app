@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:galaxy_moon_app/screen/chat_screen.dart';
-import 'package:galaxy_moon_app/screen/home_screen.dart';
-import 'package:galaxy_moon_app/screen/profile_screen.dart';
-import 'package:galaxy_moon_app/screen/search_screen.dart';
-import 'package:galaxy_moon_app/screen/splash_screen.dart';
-import 'package:galaxy_moon_app/ui/appColors.dart';
-import 'package:galaxy_moon_app/ui/appStrings.dart';
+import 'package:universe_moon_app/screen/chat_screen.dart';
+import 'package:universe_moon_app/screen/home_screen.dart';
+import 'package:universe_moon_app/screen/profile_screen.dart';
+import 'package:universe_moon_app/screen/search_screen.dart';
+import 'package:universe_moon_app/screen/splash_screen.dart';
+import 'package:universe_moon_app/ui/appColors.dart';
+import 'package:universe_moon_app/ui/appStrings.dart';
 import 'package:page_transition/page_transition.dart';
 
 void main() async {

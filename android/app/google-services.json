@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "702195582367",
-    "project_id": "galaxy-moon-app-1",
-    "storage_bucket": "galaxy-moon-app-1.appspot.com"
+    "project_id": "universe-moon-app-1",
+    "storage_bucket": "universe-moon-app-1.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:702195582367:android:b4de6dcceb7256e46369aa",
         "android_client_info": {
-          "package_name": "com.galaxy.galaxy_moon_app"
+          "package_name": "com.universe.universe_moon_app"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "702195582367-450d7j0nf7lfc09iao4fgmsm6dc5eskk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.galaxy.galaxy_moon_app",
+            "package_name": "com.universe.universe_moon_app",
             "certificate_hash": "24407fbe5b9c3ba93d5017417b830bbc8b54bc21"
           }
         },
